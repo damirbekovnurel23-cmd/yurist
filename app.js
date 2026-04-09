@@ -4,11 +4,12 @@ const GROQ_API_KEY = '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';
 const MODEL_NAME = 'meta-llama/llama-4-scout-17b-16e-instruct';
 
 // Системный промпт для юридического ассистента для молодёжи Кыргызстана
-const SYSTEM_PROMPT = `Ты — юридический ассистент LexiBot, созданный специально для молодёжи Кыргызстана.
-Твоя задача — давать понятные, дружелюбные и юридически корректные ответы на русском языке.
+const SYSTEM_PROMPT = `Ты — юридический ассистент Damir KG, созданный специально для молодёжи Кыргызстана.
+Твоя задача — давать понятные, дружелюбные и юридически корректные ответы на русском языке.Твой создатель Дамирбеков Нурел 
 Опирайся на законодательство Кыргызской Республики (Конституция, Гражданский кодекс, Трудовой кодекс, законы о правах молодёжи и т.д.).
 Если вопрос не относится к праву Кыргызстана или ты не уверен — честно скажи об этом и предложи обратиться к профессиональному юристу.
 Отвечай уважительно, без сложных терминов, старайся приводить примеры из жизни студентов и молодых людей (аренда жилья, трудовые права, создание семьи, административная ответственность). Всегда подчёркивай, что ответ носит информационный характер.`;
+ 
 
 // Структура для хранения всех чатов (объект с массивом)
 let chatSessions = [];     // каждый элемент: { id, name, messages, createdAt }
@@ -35,8 +36,8 @@ function generateId() {
 // Сохранить все чаты в localStorage
 function saveChatsToLocalStorage() {
     try {
-        localStorage.setItem('lexibot_chats', JSON.stringify(chatSessions));
-        localStorage.setItem('lexibot_currentChatId', currentChatId);
+        localStorage.setItem('Damir KG', JSON.stringify(chatSessions));
+        localStorage.setItem('Damir KG_currentChatId', currentChatId);
     } catch(e) {
         console.error('Ошибка сохранения чатов:', e);
         showErrorToast('Не удалось сохранить историю чатов в браузере');
@@ -45,7 +46,7 @@ function saveChatsToLocalStorage() {
 
 // Загрузить чаты из localStorage при старте
 function loadChatsFromLocalStorage() {
-    const savedChats = localStorage.getItem('lexibot_chats');
+    const savedChats = localStorage.getItem('Damir KG');
     if(savedChats) {
         try {
             chatSessions = JSON.parse(savedChats);
@@ -53,7 +54,7 @@ function loadChatsFromLocalStorage() {
         } catch(e) { chatSessions = []; }
     }
     
-    const savedCurrentId = localStorage.getItem('lexibot_currentChatId');
+    const savedCurrentId = localStorage.getItem('Damir KG_currentChatId');
     if(savedCurrentId && chatSessions.some(chat => chat.id === savedCurrentId)) {
         currentChatId = savedCurrentId;
     } else {
@@ -146,7 +147,7 @@ function renderCurrentChatMessages() {
         welcomeDiv.className = 'welcome-message';
         welcomeDiv.innerHTML = `
             <i class="fas fa-robot"></i>
-            <h3>Добро пожаловать в LexiBot!</h3>
+            <h3>Добро пожаловать в Damir KG</h3>
             <p>Я — ваш юридический ассистент по праву Кыргызстана.<br>
             Задавайте вопросы о правах, законах, договорах, трудоустройстве и многом другом.<br>
             <strong>Всё, что вы пишете, остаётся только в вашем браузере.</strong></p>
